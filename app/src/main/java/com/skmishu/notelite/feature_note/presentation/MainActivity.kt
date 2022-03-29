@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.material.MaterialTheme
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.Surface
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -15,6 +15,8 @@ import com.skmishu.notelite.feature_note.presentation.add_edit_note.AddEditNoteS
 import com.skmishu.notelite.feature_note.presentation.notes.NotesScreen
 import com.skmishu.notelite.feature_note.presentation.util.Screen
 import com.skmishu.notelite.ui.theme.CleanArchitectureNoteAppTheme
+import com.skmishu.notelite.ui.theme.DarkGray
+import com.skmishu.notelite.ui.theme.LiteGray
 import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalAnimationApi
@@ -23,9 +25,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            CleanArchitectureNoteAppTheme {
+            CleanArchitectureNoteAppTheme(darkTheme = isSystemInDarkTheme()) {
                 Surface(
-                    color = MaterialTheme.colors.background
+                    color = if (isSystemInDarkTheme()) DarkGray else LiteGray
                 ) {
                     val navController = rememberNavController()
                     NavHost(
