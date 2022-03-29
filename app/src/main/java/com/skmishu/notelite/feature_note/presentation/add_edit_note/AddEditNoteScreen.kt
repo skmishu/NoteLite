@@ -5,6 +5,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
@@ -66,7 +67,7 @@ fun AddEditNoteScreen(
                 onClick = {
                     viewModel.onEvent(AddEditNoteEvent.SaveNote)
                 },
-                backgroundColor = MaterialTheme.colors.primary
+                backgroundColor = if (!isSystemInDarkTheme()) Color.White else Color.Black
             ) {
                 Icon(imageVector = Icons.Default.Save, contentDescription = "Save note")
             }
